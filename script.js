@@ -1,0 +1,633 @@
+const navToggle = document.querySelector(".nav-toggle");
+const siteNav = document.querySelector(".site-nav");
+
+if (navToggle && siteNav) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = siteNav.classList.toggle("is-open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+}
+
+const menuItems = [
+  {
+    category: "poke",
+    badge: "Поке бол",
+    name: "Скарида Манго Поке",
+    englishName: "Shrimp Mango Poke",
+    meta: "500 г",
+    priceBgn: "21.51 лв",
+    priceEur: "11.00 €",
+    image: "Shrimp & Mango Bowl.png",
+    description:
+      "Хрупкава скарида, овкусен суши ориз, крема сирене, авокадо, манго, зеле, едамаме, унаги сос, чили майонеза, пържен лук, темпура.",
+  },
+  {
+    category: "poke",
+    badge: "Поке бол",
+    name: "Филаделфия Поке",
+    englishName: "Philadelphia Poke",
+    meta: "500 г",
+    priceBgn: "21.32 лв",
+    priceEur: "10.90 €",
+    image: "Philadelphia Bowl.png",
+    description:
+      "Пушена сьомга, крема сирене, овкусен суши ориз, едамаме, чери домати, царевица, зеле, японска майонеза, див лук.",
+  },
+  {
+    category: "poke",
+    badge: "Поке бол",
+    name: "Пиле Поке",
+    englishName: "Chicken Poke",
+    meta: "500 г",
+    priceBgn: "18.58 лв",
+    priceEur: "9.50 €",
+    image: "Chicken Bowl.png",
+    description:
+      "Хрупкаво пиле, авокадо, овкусен суши ориз, чери домати, крема сирене, царевица, японска майонеза, сусам.",
+  },
+  {
+    category: "poke",
+    badge: "Поке бол",
+    name: "Туна Поке",
+    englishName: "Tuna Poke",
+    meta: "500 г",
+    priceBgn: "18.58 лв",
+    priceEur: "9.50 €",
+    image: "Tuna Bowl.png",
+    description: "Тон, авокадо, чери домати, крема сирене, чили майонеза, унаги сос.",
+  },
+  {
+    category: "poke",
+    badge: "Поке бол",
+    name: "Татаки Поке",
+    englishName: "Tataki Poke",
+    meta: "500 г",
+    priceBgn: "23.47 лв",
+    priceEur: "12.00 €",
+    image: "Tataki Bowl.png",
+    description:
+      "Запечен тон, уакаме, краставица, овкусен суши ориз, моркови, зеле, чили майонеза, хрупкав лук, трюфел крем.",
+  },
+  {
+    category: "poke",
+    badge: "Поке бол",
+    name: "Тон и Сьомга Поке",
+    englishName: "Tuna & Salmon Poke",
+    meta: "500 г",
+    priceBgn: "22.10 лв",
+    priceEur: "11.30 €",
+    image: "Tuna & Salmon Bowl.png",
+    description:
+      "Свеж тон, свежа сьомга, овкусен суши ориз, едамаме, краставица, зеле, японска майонеза, див лук.",
+  },
+  {
+    category: "poke",
+    badge: "Поке бол",
+    name: "Веган Поке",
+    englishName: "Vegan Poke",
+    meta: "500 г",
+    priceBgn: "16.62 лв",
+    priceEur: "8.50 €",
+    image: "Vegan Bowl.png",
+    description: "Суши ориз, моркови, авокадо, царевица, зеле, едамаме, сусам, веган сос.",
+  },
+  {
+    category: "sets",
+    badge: "Сетове",
+    name: "Бест Сет",
+    englishName: "Best Set",
+    meta: "16 бр. / 480 г",
+    priceBgn: "35.01 лв",
+    priceEur: "17.90 €",
+    image: "Best Set.png",
+    description:
+      "Криспи сьомга, Норвежка гора и темпура рол с авокадо, крема сирене и печена сьомга.",
+    wide: true,
+  },
+  {
+    category: "sets",
+    badge: "Сетове",
+    name: "Филаделфия Сет",
+    englishName: "Philadelphia Set",
+    meta: "16 бр. / 480 г",
+    priceBgn: "32.27 лв",
+    priceEur: "16.50 €",
+    image: "Philadelphia Set.png",
+    description:
+      "Филаделфия със сьомга, Филаделфия с тон и киноа, Филаделфия с пиле, Хрупкава скарида.",
+  },
+  {
+    category: "sets",
+    badge: "Сетове",
+    name: "Калифорния Сет",
+    englishName: "California Set",
+    meta: "16 бр. / 420 г",
+    priceBgn: "29.34 лв",
+    priceEur: "15.00 €",
+    image: "California Set.png",
+    description:
+      "Калифорния със скарида и авокадо, сурими, краставица, авокадо, тобико, японска майонеза и аеро манго.",
+    wide: true,
+  },
+  {
+    category: "sets",
+    badge: "Сетове",
+    name: "Фемили Сет",
+    englishName: "Family Set",
+    meta: "40 бр. / 850 г",
+    priceBgn: "62.57 лв",
+    priceEur: "31.99 €",
+    image: "Family Set.png",
+    description:
+      "Хосо краставица, Филаделфия пиле, Чикън рол, Фиеста рол, Хрупкава скарида, Криспи сьомга и Криспи скарида.",
+    wide: true,
+  },
+  {
+    category: "sets",
+    badge: "Сетове",
+    name: "Осака Сет",
+    englishName: "Osaka Set",
+    meta: "20 бр. / 480 г",
+    priceBgn: "31.88 лв",
+    priceEur: "16.30 €",
+    image: "Osaka Set.png",
+    description: "Краб рол, Трюфел пиле и хосо авокадо с крема сирене.",
+    wide: true,
+  },
+  {
+    category: "sets",
+    badge: "Сетове",
+    name: "Сьомга Сет",
+    englishName: "Salmon Set",
+    meta: "16 бр. / 290 г",
+    priceBgn: "19.95 лв",
+    priceEur: "10.20 €",
+    image: "Salmon Set.png",
+    description: "Криспи сьомга и хосо краставица с крема сирене.",
+  },
+  {
+    category: "sets",
+    badge: "Сетове",
+    name: "Чикън Сет",
+    englishName: "Chicken Set",
+    meta: "16 бр. / 360 г",
+    priceBgn: "21.91 лв",
+    priceEur: "11.20 €",
+    image: "Chicken Set.png",
+    description: "Дракон Филаделфия с авокадо, Чикън рол и хосо краставица с крема сирене.",
+  },
+  {
+    category: "sets",
+    badge: "Сетове",
+    name: "Криспи Чикън Сет",
+    englishName: "Crispy Chicken Set",
+    meta: "14 бр. / 290 г",
+    priceBgn: "15.65 лв",
+    priceEur: "8.00 €",
+    image: "Crispy Chicken Set.png",
+    description: "Футомаки пиле с чипс и хосо краставица.",
+    wide: true,
+  },
+  {
+    category: "volcano",
+    badge: "Volcano rolls",
+    name: "Пинк Фюжън",
+    englishName: "Pink Fusion",
+    meta: "8 бр. / 130 г",
+    priceBgn: "11.64 лв",
+    priceEur: "5.95 €",
+    image: "Pink Fusion.png",
+    description: "Хрупкави скариди, крема сирене, краставица, унаги сос, чили майонеза.",
+  },
+  {
+    category: "volcano",
+    badge: "Volcano rolls",
+    name: "Сънбърст",
+    englishName: "Sunburst",
+    meta: "8 бр. / 130 г",
+    priceBgn: "11.64 лв",
+    priceEur: "5.95 €",
+    image: "Sunburst.png",
+    description: "Спайси сьомга, крема сирене, краставица, унаги сос, сусам.",
+  },
+  {
+    category: "volcano",
+    badge: "Volcano rolls",
+    name: "Вулкан Краб",
+    englishName: "Crab Volcano",
+    meta: "8 бр. / 130 г",
+    priceBgn: "11.15 лв",
+    priceEur: "5.70 €",
+    image: "Crab Volcano.png",
+    description: "Краб микс, крема сирене, краставица, тобико, унаги сос.",
+  },
+  {
+    category: "uramaki",
+    badge: "Урамаки",
+    name: "Спешъл Рол",
+    englishName: "Special Roll",
+    meta: "8 бр. / 200 г",
+    priceBgn: "17.21 лв",
+    priceEur: "8.80 €",
+    image: "Special Roll.png",
+    description: "Хрупкаво пиле, крема сирене, манго, авокадо, японска майонеза, унаги сос.",
+  },
+  {
+    category: "uramaki",
+    badge: "Урамаки",
+    name: "Трюфел Пиле",
+    englishName: "Truffle Chicken Roll",
+    meta: "8 бр. / 200 г",
+    priceBgn: "14.08 лв",
+    priceEur: "7.20 €",
+    image: "Truffle Chicken Roll.png",
+    description: "Хрупкаво пиле, крема сирене, краставица, киноа, трюфел крем, дракон сос.",
+    wide: true,
+  },
+  {
+    category: "uramaki",
+    badge: "Урамаки",
+    name: "Осака Рол",
+    englishName: "Osaka Roll",
+    meta: "8 бр. / 220 г",
+    priceBgn: "15.26 лв",
+    priceEur: "7.80 €",
+    image: "Osaka Roll.png",
+    description:
+      "Хрупкава скарида, крема сирене, авокадо, краставица, японска майонеза, унаги сос.",
+  },
+  {
+    category: "uramaki",
+    badge: "Урамаки",
+    name: "Краб Рол",
+    englishName: "Crab Roll",
+    meta: "4 бр. / 110 г",
+    priceBgn: "8.61 лв",
+    priceEur: "4.40 €",
+    image: "Crab Roll.png",
+    description: "Хрупкава скарида, сурими, крема сирене, краставица, дракон сос.",
+  },
+  {
+    category: "uramaki",
+    badge: "Урамаки",
+    name: "Император Рол",
+    englishName: "Emperor Roll",
+    meta: "4 бр. / 120 г",
+    priceBgn: "12.13 лв",
+    priceEur: "6.20 €",
+    image: "Emperor Roll.png",
+    description: "Хрупкава скарида, запечена сьомга, крема сирене, чили майонеза, див лук, тобико.",
+  },
+  {
+    category: "uramaki",
+    badge: "Урамаки",
+    name: "Салмон Рол",
+    englishName: "Salmon Roll",
+    meta: "4 бр. / 110 г",
+    priceBgn: "10.37 лв",
+    priceEur: "5.30 €",
+    image: "Salmon Roll.png",
+    description: "Крема сирене, краставица, авокадо, сурова сьомга, икура сос.",
+  },
+  {
+    category: "uramaki",
+    badge: "Урамаки",
+    name: "Хрупкава Скарида",
+    englishName: "Crispy Shrimp Roll",
+    meta: "4 бр. / 100 г",
+    priceBgn: "9.00 лв",
+    priceEur: "4.60 €",
+    image: "Crispy Shrimp Roll.png",
+    description: "Скариди, крема сирене, краставица, чили майонеза, темпура.",
+  },
+  {
+    category: "uramaki",
+    badge: "Урамаки",
+    name: "Чикън Рол",
+    englishName: "Chicken Roll",
+    meta: "4 бр. / 100 г",
+    priceBgn: "8.31 лв",
+    priceEur: "4.25 €",
+    image: "Chicken Roll.png",
+    description: "Хрупкаво пиле, крема сирене, краставица, унаги сос, японска майонеза, панко.",
+  },
+  {
+    category: "uramaki",
+    badge: "Урамаки",
+    name: "Норвежка Гора",
+    englishName: "Norwegian Forest",
+    meta: "4 бр. / 100 г",
+    priceBgn: "9.00 лв",
+    priceEur: "4.60 €",
+    image: "Norwegian Forest.png",
+    description: "Пушена сьомга, авокадо, крема сирене, краставица.",
+  },
+  {
+    category: "uramaki",
+    badge: "Урамаки",
+    name: "Урамаки Тон",
+    englishName: "Tuna Uramaki",
+    meta: "4 бр. / 100 г",
+    priceBgn: "8.90 лв",
+    priceEur: "4.70 €",
+    image: "Tuna Uramaki.png",
+    description: "Тон, крема сирене, краставица, сусам.",
+  },
+  {
+    category: "uramaki",
+    badge: "Урамаки",
+    name: "Фиеста Рол",
+    englishName: "Fiesta Roll",
+    meta: "8 бр. / 150 г",
+    priceBgn: "15.65 лв",
+    priceEur: "8.00 €",
+    image: "Fiesta Roll.png",
+    description: "Сьомга, тон, крема сирене, краставица, хрупкав чипс, японска майонеза.",
+    wide: true,
+  },
+  {
+    category: "uramaki",
+    badge: "Урамаки",
+    name: "Дракон Филаделфия",
+    englishName: "Dragon Philadelphia",
+    meta: "4 бр. / 100 г",
+    priceBgn: "9.00 лв",
+    priceEur: "4.60 €",
+    image: "Dragon Philadelphia.png",
+    description: "Хрупкаво пиле, крема сирене, авокадо, краставица, дракон сос.",
+  },
+  {
+    category: "futomaki",
+    badge: "Футомаки",
+    name: "Гейша Рол",
+    englishName: "Geisha Roll",
+    meta: "6 бр. / 120 г",
+    priceBgn: "10.95 лв",
+    priceEur: "5.60 €",
+    image: "Geisha Roll.png",
+    description: "Хрупкава скарида, крема сирене, тобико, юзу дресинг.",
+  },
+  {
+    category: "futomaki",
+    badge: "Футомаки",
+    name: "Тон и Манго",
+    englishName: "Tuna & Mango Futomaki",
+    meta: "6 бр. / 120 г",
+    priceBgn: "11.93 лв",
+    priceEur: "6.10 €",
+    image: "Tuna & Mango Futomaki.png",
+    description: "Пресен тон и аеро манго.",
+  },
+  {
+    category: "futomaki",
+    badge: "Футомаки",
+    name: "Тон и Авокадо",
+    englishName: "Tuna & Avocado Futomaki",
+    meta: "6 бр. / 120 г",
+    priceBgn: "11.93 лв",
+    priceEur: "6.10 €",
+    image: "Tuna & Avocado Futomaki.png",
+    description: "Пресен тон и авокадо.",
+  },
+  {
+    category: "futomaki",
+    badge: "Футомаки",
+    name: "Черен Дракон",
+    englishName: "Black Dragon",
+    meta: "6 бр. / 140 г",
+    priceBgn: "11.34 лв",
+    priceEur: "5.80 €",
+    image: "Black Dragon.png",
+    description: "Хрупкава скарида, сурими, спайси сьомга, тобико, дракон сос.",
+    wide: true,
+  },
+  {
+    category: "hosomaki",
+    badge: "Хосомаки",
+    name: "Хосо Краставица",
+    englishName: "Cucumber Hosomaki",
+    meta: "8 бр. / 110 г",
+    priceBgn: "7.24 лв",
+    priceEur: "3.70 €",
+    image: "Cucumber Hosomaki.png",
+    description: "Суши ориз, нори, краставица, сусам.",
+  },
+  {
+    category: "hosomaki",
+    badge: "Хосомаки",
+    name: "Краставица и Филаделфия",
+    englishName: "Cucumber & Philadelphia Hosomaki",
+    meta: "8 бр. / 110 г",
+    priceBgn: "7.63 лв",
+    priceEur: "3.90 €",
+    image: "Cucumber & Philadelphia Hosomaki.png",
+    description: "Суши ориз, нори, краставица, крема сирене.",
+  },
+  {
+    category: "hosomaki",
+    badge: "Хосомаки",
+    name: "Авокадо и Филаделфия",
+    englishName: "Avocado & Philadelphia Hosomaki",
+    meta: "8 бр. / 110 г",
+    priceBgn: "7.82 лв",
+    priceEur: "4.00 €",
+    image: "Avocado & Philadelphia Hosomaki.png",
+    description: "Суши ориз, нори, авокадо, крема сирене.",
+  },
+  {
+    category: "hosomaki",
+    badge: "Хосомаки",
+    name: "Хосо Авокадо",
+    englishName: "Avocado Hosomaki",
+    meta: "8 бр. / 100 г",
+    priceBgn: "7.43 лв",
+    priceEur: "3.80 €",
+    image: "Avocado Hosomaki.png",
+    description: "Суши ориз, нори, авокадо.",
+  },
+  {
+    category: "hosomaki",
+    badge: "Хосомаки",
+    name: "Хосо Пушена Сьомга",
+    englishName: "Smoked Salmon Hosomaki",
+    meta: "8 бр. / 110 г",
+    priceBgn: "9.19 лв",
+    priceEur: "4.70 €",
+    image: "Smoked Salmon Hosomaki.png",
+    description: "Суши ориз, нори, пушена сьомга, краставица.",
+  },
+  {
+    category: "hosomaki",
+    badge: "Хосомаки",
+    name: "Хосо Тон",
+    englishName: "Tuna Hosomaki",
+    meta: "8 бр. / 110 г",
+    priceBgn: "10.17 лв",
+    priceEur: "5.10 €",
+    image: "Tuna Hosomaki.png",
+    description: "Суши ориз, нори, риба тон.",
+  },
+  {
+    category: "hosomaki",
+    badge: "Хосомаки",
+    name: "Хосо Манго",
+    englishName: "Mango Hosomaki",
+    meta: "8 бр. / 110 г",
+    priceBgn: "8.41 лв",
+    priceEur: "4.30 €",
+    image: "Mango Hosomaki.png",
+    description: "Суши ориз, нори, манго.",
+  },
+  {
+    category: "tataki",
+    badge: "Татаки и сашими",
+    name: "Сашими от тон",
+    englishName: "Tuna Sashimi",
+    meta: "80 г",
+    priceBgn: "14.86 лв",
+    priceEur: "7.60 €",
+    image: "Tuna Sashimi.png",
+    description: "Пресен тон, фино нарязан и поднесен върху свежо канапе от хрупкава краставица.",
+  },
+  {
+    category: "tataki",
+    badge: "Татаки и сашими",
+    name: "Татаки от тон",
+    englishName: "Tuna Tataki with Truffle Cream",
+    meta: "100 г",
+    priceBgn: "17.80 лв",
+    priceEur: "9.10 €",
+    image: "Tuna Tataki.png",
+    description:
+      "Леко запечен тон, юзу-уасаби дресинг, фин трюфел крем, унаги сос, сусам и пресен див лук.",
+  },
+  {
+    category: "others",
+    badge: "Гьоза",
+    name: "Гьоза с телешко",
+    englishName: "Beef Gyoza",
+    meta: "6 бр. / 140 г",
+    priceBgn: "13.69 лв",
+    priceEur: "7.00 €",
+    image: "Gyoza.png",
+    description: "Хрупкави гьози с телешко месо, поднесени с понзу сос.",
+  },
+  {
+    category: "others",
+    badge: "Гьоза",
+    name: "Гьоза с пилешко",
+    englishName: "Chicken Gyoza",
+    meta: "6 бр. / 140 г",
+    priceBgn: "13.30 лв",
+    priceEur: "6.80 €",
+    image: "Gyoza.png",
+    description: "Хрупкави гьози с пилешко месо, поднесени с понзу сос.",
+  },
+  {
+    category: "others",
+    badge: "Гьоза",
+    name: "Гьоза със зеленчуци и тофу",
+    englishName: "Vegetable & Tofu Gyoza",
+    meta: "6 бр. / 140 г",
+    priceBgn: "13.10 лв",
+    priceEur: "6.70 €",
+    image: "Gyoza.png",
+    description: "Леки и ароматни гьози със зеленчуци и тофу, поднесени с понзу сос.",
+  },
+  {
+    category: "others",
+    badge: "Гьоза",
+    name: "Гьоза Микс",
+    englishName: "Gyoza Mix",
+    meta: "6 бр. / 140 г",
+    priceBgn: "13.50 лв",
+    priceEur: "6.90 €",
+    image: "Gyoza.png",
+    description: "Комбинация от телешки, пилешки и зеленчукови гьози, поднесени с понзу сос.",
+  },
+  {
+    category: "others",
+    badge: "Други",
+    name: "Скариди Темпура",
+    englishName: "Tempura Shrimp",
+    meta: "5 бр. / 130 г",
+    priceBgn: "12.71 лв",
+    priceEur: "6.50 €",
+    image: "Tempura Shrimp.png",
+    description: "Хрупкави скариди в темпура със златиста коричка, поднесени с дракон сос.",
+  },
+  {
+    category: "others",
+    badge: "Други",
+    name: "Уакаме",
+    englishName: "Wakame",
+    meta: "150 г",
+    priceBgn: "8.80 лв",
+    priceEur: "4.50 €",
+    image: "Wakame.png",
+    description: "Мариновани водорасли уакаме със сусам.",
+  },
+  {
+    category: "others",
+    badge: "Други",
+    name: "Пролетни рулца",
+    englishName: "Spring Rolls",
+    meta: "6 бр. / 120 г",
+    priceBgn: "9.97 лв",
+    priceEur: "5.10 €",
+    image: "Spring Rolls.png",
+    description: "Хрупкави пролетни рулца със зеленчуци, поднесени с дракон сос.",
+  },
+];
+
+const dishGrid = document.querySelector("#dish-grid");
+const extrasPanel = document.querySelector(".extras-panel");
+
+const createDishCard = (item) => {
+  const card = document.createElement("article");
+  card.className = `dish-card${item.wide ? " dish-card--wide" : ""}`;
+  card.dataset.category = item.category;
+
+  card.innerHTML = `
+    <div class="dish-card__image">
+      <img src="./foods/${item.image}" alt="${item.name}" loading="lazy" />
+    </div>
+    <div class="dish-card__body">
+      <p class="dish-card__category">${item.badge}</p>
+      <h3>${item.name}<span>${item.englishName}</span></h3>
+      <p class="dish-card__meta">${item.meta}</p>
+      <p class="dish-card__desc">${item.description}</p>
+      <p class="dish-card__price"><span>${item.priceBgn}</span><small>${item.priceEur}</small></p>
+    </div>
+  `;
+
+  return card;
+};
+
+if (dishGrid) {
+  const fragment = document.createDocumentFragment();
+  menuItems.forEach((item) => fragment.append(createDishCard(item)));
+  dishGrid.append(fragment);
+}
+
+const filterButtons = document.querySelectorAll("[data-filter]");
+const filterableItems = () => document.querySelectorAll(".dish-card, .extras-panel");
+
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const filter = button.getAttribute("data-filter");
+
+    filterButtons.forEach((item) => item.classList.remove("is-active"));
+    button.classList.add("is-active");
+
+    filterableItems().forEach((card) => {
+      const category = card.getAttribute("data-category");
+      const shouldShow = filter === "all" || filter === category;
+      card.hidden = !shouldShow;
+    });
+
+    if (extrasPanel) {
+      extrasPanel.hidden = !(filter === "all" || filter === "others");
+    }
+  });
+});
